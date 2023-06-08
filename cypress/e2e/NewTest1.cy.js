@@ -1,3 +1,4 @@
+
 describe('template spec', () => {
 	beforeEach(() => {
 		cy.visit('http://localhost:3000/');
@@ -6,6 +7,7 @@ describe('template spec', () => {
 	it('submit with em pty content', () => {
 		cy.get('button').click();
 	});
+
 	it('submit with content', () => {
 		cy.fixture('example').then((data) => {
 			const name = data.name;
@@ -17,7 +19,11 @@ describe('template spec', () => {
 			cy.get('#email').type(email);
 			cy.get('#languages').select('German');
 			cy.get('#subscribed').click();
+            // click button submit
 			cy.get('button').click();
+            cy.on('window:alert', (t) => {
+                expect(t).to.contain('Firstname');
+            })
 		});
 	});
 });
