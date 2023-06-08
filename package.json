@@ -15,6 +15,7 @@
     "test": "vitest",
     "eject": "react-scripts eject",
     "lint": "./node_modules/.bin/eslint src/** --ext .js,.jsx",
+    "cypress:open": "cypress open"
     "test:vitest": "vitest",
     "coverage": "vitest run --coverage",
     "test:ui": "vitest --ui"
@@ -29,6 +30,7 @@
     "not op_mini all"
   ],
   "devDependencies": {
+    "cypress": "^12.14.0",
     "@vitest/ui": "^0.32.0",
     "enzyme": "^3.8.0",
     "enzyme-adapter-react-16": "^1.7.1",
