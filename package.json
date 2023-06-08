@@ -3,6 +3,7 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
+    "@testing-library/react": "12.1.2",
     "bootstrap": "^4.2.1",
     "prop-types": "^15.8.1",
     "react": "^16.7.0",
@@ -13,7 +14,9 @@
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject",
-    "lint": "./node_modules/.bin/eslint src/** --ext .js,.jsx"
+    "lint": "./node_modules/.bin/eslint src/** --ext .js,.jsx",
+    "test:vitest": "vitest",
+    "coverage": "vitest run --coverage"
   },
   "eslintConfig": {
     "extends": "react-app"
@@ -34,6 +37,7 @@
     "eslint-plugin-react": "^7.28.0",
     "eslint-plugin-react-hooks": "^4.3.0",
     "react-scripts": "^5.0.1",
-    "react-test-renderer": "^16.7.0"
+    "react-test-renderer": "^16.7.0",
+    "vitest": "^0.32.0"
   }
 }
