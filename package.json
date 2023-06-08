@@ -13,7 +13,8 @@
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject",
-    "lint": "./node_modules/.bin/eslint src/** --ext .js,.jsx"
+    "lint": "./node_modules/.bin/eslint src/** --ext .js,.jsx",
+    "cypress:open": "cypress open"
   },
   "eslintConfig": {
     "extends": "react-app"
@@ -25,6 +26,7 @@
     "not op_mini all"
   ],
   "devDependencies": {
+    "cypress": "^12.14.0",
     "enzyme": "^3.8.0",
     "enzyme-adapter-react-16": "^1.7.1",
     "eslint": "^7.32.0 || ^8.2.0",
