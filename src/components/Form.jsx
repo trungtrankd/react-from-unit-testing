@@ -1,117 +1,158 @@
-import React from 'react'
-import TextInput from './TextInput'
-import MultiSelect from './MultiSelect'
-import Options from './Options'
-import Checkbox from './Checkbox'
-import Button from './Button'
+import React from "react";
+import { Controller } from "react-hook-form";
+import { withUseFormHook } from "../withUseHookForm";
+import Checkbox from "./Checkbox";
+import MultiSelect from "./MultiSelect";
+import Options from "./Options";
+import TextInput from "./TextInput";
 
+// import Button from "./Button";
+
+const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 class Form extends React.Component {
   constructor(props) {
-    super(props)
-    this.state = {
-      firstname: '',
-      lastname: '',
-      email: '',
-      languages: [],
-      subscribed: false,
-    }
-    this.handleChange = this.handleChange.bind(this)
-    this.handleMultiSelect = this.handleMultiSelect.bind(this)
-    this.handleSubmit = this.handleSubmit.bind(this)
-  }
-
-  handleChange(event) {
-    const { target } = event
-    const { name } = target
-    const value = target.type === 'checkbox' ? target.checked : target.value
-    this.setState({ [name]: value }, () => {
-      console.log(name)
-    })
-  }
-
-  handleMultiSelect(event) {
-    this.setState({ [event.target.name]: [...event.target.selectedOptions].map((o) => o.value) })
-  }
-
-  handleSubmit() {
-    const {
-      firstname,
-      lastname,
-      email,
-      languages,
-      subscribed,
-    } = this.state
-    const subscribedText = subscribed ? 'Yes' : 'No'
-    alert(`Firstname: ${firstname}, Lastname: ${lastname}, Email: ${email}, Language: ${languages}, Subscribed: ${subscribedText}`)
+    super(props);
+    this.state = {};
   }
 
   render() {
-    const languageList = ['English', 'Spanish', 'French', 'German', 'Japanese']
-    const {
-      firstname,
-      lastname,
-      email,
-      languages,
-      subscribed,
-    } = this.state
+    const languageList = ["English", "Spanish", "French", "German", "Japanese"];
+    const { control, onSubmit, watch } = this.props;
+
+    const languagesSelected = watch("languages");
     return (
-      <form onSubmit={this.handleSubmit}>
-        <TextInput
-          labelFor="firstname"
-          label="Firstname"
-          className="form-control"
-          type="text"
+      <form
+        onSubmit={(e) => {
+          e.preventDefault();
+          onSubmit();
+        }}
+      >
+        <Controller
+          control={control}
           name="firstname"
-          id="firstname"
-          value={firstname}
-          handleChange={this.handleChange}
+          render={({ field, fieldState: { error } }) => (
+            <>
+              <TextInput
+                labelFor="firstname"
+                label="Firstname"
+                id="firstname"
+                {...field}
+                className="form-control"
+                type="text"
+                data-testid="control-firstname"
+              />
+              {error && <p className="text-danger" data-testid="firstname-error">{error.message}</p>}
+            </>
+          )}
+          rules={{
+            required: {
+              value: true,
+              message: "Firstname is required",
+            },
+          }}
         />
-        <TextInput
-          labelFor="lastname"
-          label="Lastname"
-          className="form-control"
-          type="text"
+        <Controller
+          control={control}
           name="lastname"
-          id="lastname"
-          value={lastname}
-          handleChange={this.handleChange}
+          render={({ field, fieldState: { error } }) => (
+            <>
+              <TextInput
+                labelFor="lastname"
+                label="Lastname"
+                {...field}
+                className="form-control"
+                type="text"
+                id="lastname"
+                data-testid="control-lastname"
+              />
+              {error && <p className="text-danger" data-testid="lastname-error">{error.message}</p>}
+            </>
+          )}
+          rules={{
+            required: {
+              value: true,
+              message: "Lastname is required",
+            },
+          }}
         />
-        <TextInput
-          labelFor="email"
-          label="E-mail"
-          className="form-control"
-          type="email"
+        <Controller
+          control={control}
           name="email"
-          id="email"
-          value={email}
-          handleChange={this.handleChange}
+          render={({ field, fieldState: { error } }) => (
+            <>
+              <TextInput
+                labelFor="email"
+                label="E-mail"
+                className="form-control"
+                type="email"
+                id="email"
+                {...field}
+                data-testid="control-email"
+              />
+              {error && <p className="text-danger" data-testid="email-error">{error.message}</p>}
+            </>
+          )}
+          rules={{
+            required: {
+              value: true,
+              message: "E-mail is required",
+            },
+            pattern: {
+              value: emailRegex,
+              message: 'E-mail format invalid'
+            }
+          }}
         />
-        <MultiSelect
-          labelFor="languages"
-          label="Languages"
-          className="form-control mb-3"
-          value={languages}
-          handleChange={this.handleMultiSelect}
-        >
-          <Options options={languageList} />
-        </MultiSelect>
-        <Checkbox
-          labelFor="subscribed"
-          label="Subscribe"
-          checked={subscribed}
-          className="form-check mb-3 text-right"
-          handleChange={this.handleChange}
+        <Controller
+          name="languages"
+          control={control}
+          render={({ field }) => (
+            <MultiSelect
+              labelFor="languages"
+              label="Languages"
+              className="form-control mb-3"
+              {...field}
+              onChange={(e) => {
+                const value = e.target.value;
+                if (languagesSelected.some((x) => x === value)) {
+                  field.onChange(languagesSelected.filter((x) => x !== value));
+                } else {
+                  field.onChange([...languagesSelected, value]);
+                }
+              }}
+            >
+              <Options options={languageList} />
+            </MultiSelect>
+          )}
         />
-        <Button
+        <Controller
+          control={control}
+          name="subscribed"
+          render={({ field }) => (
+            <Checkbox
+              labelFor="subscribed"
+              label="Subscribe"
+              checked={field.value}
+              className="form-check mb-3 text-right"
+              {...field}
+            />
+          )}
+        />
+
+        <button
           type="submit"
+          data-testid="btn-submit"
+          onClick={(e) => {
+            e.preventDefault();
+            onSubmit();
+          }}
           className="btn btn-primary form-control"
         >
           Submit
-        </Button>
-
+        </button>
       </form>
-    )
+    );
   }
 }
 
-export default Form
+export default withUseFormHook(Form);

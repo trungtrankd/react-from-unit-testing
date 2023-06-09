@@ -4,10 +4,13 @@
   "private": true,
   "dependencies": {
     "@testing-library/react": "12.1.2",
+    "@vitejs/plugin-react": "^4.0.0",
     "bootstrap": "^4.2.1",
     "prop-types": "^15.8.1",
     "react": "^16.7.0",
-    "react-dom": "^16.7.0"
+    "react-dom": "^16.7.0",
+    "react-hook-form": "^7.44.3",
+    "vite-tsconfig-paths": "^4.2.0"
   },
   "scripts": {
     "start": "react-scripts start",

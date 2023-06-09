@@ -1,8 +1,12 @@
-import React from 'react'
+import React from "react";
 
-const Button = ({ href, children }) => {
-  const Tag = href ? 'a' : 'button'
-  return <Tag href={href}>{children}</Tag>
-}
+const Button = ({ href, children, ...rest }) => {
+  const Tag = href ? "a" : "button";
+  return (
+    <Tag href={href} >
+      {children}
+    </Tag>
+  );
+};
 
-export default Button
+export default Button;

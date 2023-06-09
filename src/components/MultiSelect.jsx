@@ -1,43 +1,40 @@
-import React from 'react'
-import PropTypes from 'prop-types'
+import React, { forwardRef } from "react";
+import PropTypes from "prop-types";
 
-const MultiSelect = ({
-  labelFor,
-  label,
-  className,
-  value,
-  handleChange,
-  children,
-}) => (
-  <div>
-    <label htmlFor={labelFor}>{label}</label>
-    <select
-      multiple
-      className={className}
-      value={value}
-      id={labelFor}
-      name={labelFor}
-      onChange={handleChange}
-    >
-      {children}
-    </select>
-  </div>
-)
+const MultiSelect = forwardRef(
+  ({ labelFor, label, className, value, onChange, children }, ref) => (
+    <div>
+      <label htmlFor={labelFor}>{label}</label>
+      <select
+        ref={ref}
+        multiple
+        className={className}
+        value={value}
+        id={labelFor}
+        name={labelFor}
+        onClick={onChange}
+        onChange={() => {}}
+      >
+        {children}
+      </select>
+    </div>
+  )
+);
 
 MultiSelect.propTypes = {
   className: PropTypes.string,
   labelFor: PropTypes.string,
   value: PropTypes.arrayOf(PropTypes.string),
-  handleChange: PropTypes.func,
+  onChange: PropTypes.func,
   label: PropTypes.string,
-}
+};
 
 MultiSelect.defaultProps = {
-  className: 'form-group',
-  labelFor: 'checkbox',
+  className: "form-group",
+  labelFor: "checkbox",
   value: [],
-  handleChange() {},
-  label: 'MultiSelect',
-}
+  onChange() {},
+  label: "MultiSelect",
+};
 
-export default MultiSelect
+export default MultiSelect;
