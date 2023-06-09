@@ -39,8 +39,9 @@ class Form extends React.Component {
                 {...field}
                 className="form-control"
                 type="text"
+                data-testid="control-firstname"
               />
-              {error && <p className="text-danger">{error.message}</p>}
+              {error && <p className="text-danger" data-testid="firstname-error">{error.message}</p>}
             </>
           )}
           rules={{
@@ -62,8 +63,9 @@ class Form extends React.Component {
                 className="form-control"
                 type="text"
                 id="lastname"
+                data-testid="control-lastname"
               />
-              {error && <p className="text-danger">{error.message}</p>}
+              {error && <p className="text-danger" data-testid="lastname-error">{error.message}</p>}
             </>
           )}
           rules={{
@@ -85,8 +87,9 @@ class Form extends React.Component {
                 type="email"
                 id="email"
                 {...field}
+                data-testid="control-email"
               />
-              {error && <p className="text-danger">{error.message}</p>}
+              {error && <p className="text-danger" data-testid="email-error">{error.message}</p>}
             </>
           )}
           rules={{

@@ -1,6 +1,6 @@
-import { act, render, screen, fireEvent } from "@testing-library/react";
+import { act, fireEvent, render, screen } from "@testing-library/react";
 import React from "react";
-import { beforeEach, describe, expect, test, vi } from "vitest";
+import { beforeEach, describe, expect, test } from "vitest";
 import Form from "../src/components/Form";
 import TestWrapper from "./test.wrapper";
 
@@ -20,9 +20,46 @@ describe("<Form>", () => {
     expect(buttonSubmit).toBeDefined();
   });
 
-  // test("<Click Submit>", () => {
-  //   fireEvent.click(screen.getByTestId("btn-submit"));
-  //   const inputError = screen.getByText("Firstname is required");
-  //   console.log(inputError);
-  // });
+  test("<Require fist name>", async () => {
+    await act(async () => {
+      fireEvent.click(screen.getByTestId("btn-submit"));
+    });
+    expect(screen.getByTestId("firstname-error")).toBeDefined();
+  });
+
+  test("<Require last name>", async () => {
+    await act(async () => {
+      fireEvent.click(screen.getByTestId("btn-submit"));
+    });
+    expect(screen.getByTestId("lastname-error")).toBeDefined();
+  });
+
+  test("<Required email>", async () => {
+    await act(async () => {
+      fireEvent.click(screen.getByTestId("btn-submit"));
+    });
+    expect(screen.getByTestId("email-error")).toBeDefined();
+  });
+
+  test("<Valid email>", async () => {
+    await act(async () => {
+      fireEvent.change(screen.getByTestId("control-firstname"), {
+        target: {
+          value: "Khang",
+        },
+      });
+      fireEvent.change(screen.getByTestId("control-lastname"), {
+        target: {
+          value: "Truong",
+        },
+      });
+      fireEvent.change(screen.getByTestId("control-email"), {
+        target: {
+          value: "khang.truong",
+        },
+      });
+      fireEvent.click(screen.getByTestId("btn-submit"));
+    });
+    expect(screen.getByTestId("email-error")).toBeDefined();
+  });
 });

@@ -1,27 +1,24 @@
-import React from "react";
+import React, { forwardRef } from "react";
 import PropTypes from "prop-types";
 
-const MultiSelect = ({
-  labelFor,
-  label,
-  className,
-  value,
-  onChange,
-  children,
-}) => (
-  <div>
-    <label htmlFor={labelFor}>{label}</label>
-    <select
-      multiple
-      className={className}
-      value={value}
-      id={labelFor}
-      name={labelFor}
-      onClick={onChange}
-    >
-      {children}
-    </select>
-  </div>
+const MultiSelect = forwardRef(
+  ({ labelFor, label, className, value, onChange, children }, ref) => (
+    <div>
+      <label htmlFor={labelFor}>{label}</label>
+      <select
+        ref={ref}
+        multiple
+        className={className}
+        value={value}
+        id={labelFor}
+        name={labelFor}
+        onClick={onChange}
+        onChange={() => {}}
+      >
+        {children}
+      </select>
+    </div>
+  )
 );
 
 MultiSelect.propTypes = {

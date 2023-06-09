@@ -2,7 +2,7 @@ import React, { forwardRef } from "react";
 import PropTypes from "prop-types";
 
 const TextInput = forwardRef(
-  ({ labelFor, label, type, name, id, value, onChange, className }, ref) => {
+  ({ labelFor, label, type, name, id, value, onChange, className,...rest }, ref) => {
     return (
       <div className="form-group">
         <label htmlFor={labelFor}>{label}</label>
@@ -14,6 +14,7 @@ const TextInput = forwardRef(
           value={value}
           onChange={onChange}
           className={className}
+          {...rest}
         />
       </div>
     );
