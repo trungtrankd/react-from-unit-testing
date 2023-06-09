@@ -1,10 +1,10 @@
-import React from 'react'
-import Jumbotron from './components/Jumbotron'
-import TitleHeader from './components/TitleHeader'
-import Container from './components/Container'
-import Row from './components/Row'
-import Column from './components/Column'
-import Form from './components/Form'
+import React from "react";
+import Jumbotron from "./components/Jumbotron";
+import TitleHeader from "./components/TitleHeader";
+import Container from "./components/Container";
+import Row from "./components/Row";
+import Column from "./components/Column";
+import Form from "./components/Form";
 
 const App = () => (
   <div>
@@ -19,6 +19,6 @@ const App = () => (
       </Row>
     </Container>
   </div>
-)
+);
 
-export default App
+export default App;

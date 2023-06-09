@@ -1,12 +1,12 @@
-import React from 'react'
-import PropTypes from 'prop-types'
+import React from "react";
+import PropTypes from "prop-types";
 
 const MultiSelect = ({
   labelFor,
   label,
   className,
   value,
-  handleChange,
+  onChange,
   children,
 }) => (
   <div>
@@ -17,27 +17,27 @@ const MultiSelect = ({
       value={value}
       id={labelFor}
       name={labelFor}
-      onChange={handleChange}
+      onClick={onChange}
     >
       {children}
     </select>
   </div>
-)
+);
 
 MultiSelect.propTypes = {
   className: PropTypes.string,
   labelFor: PropTypes.string,
   value: PropTypes.arrayOf(PropTypes.string),
-  handleChange: PropTypes.func,
+  onChange: PropTypes.func,
   label: PropTypes.string,
-}
+};
 
 MultiSelect.defaultProps = {
-  className: 'form-group',
-  labelFor: 'checkbox',
+  className: "form-group",
+  labelFor: "checkbox",
   value: [],
-  handleChange() {},
-  label: 'MultiSelect',
-}
+  onChange() {},
+  label: "MultiSelect",
+};
 
-export default MultiSelect
+export default MultiSelect;

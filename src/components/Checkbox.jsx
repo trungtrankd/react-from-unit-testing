@@ -2,7 +2,7 @@ import React from 'react'
 import PropTypes from 'prop-types'
 
 const CheckBox = ({
-  className, labelFor, checked, handleChange, label,
+  className, labelFor, checked, onChange, label,
 }) => (
   <div className={className}>
     <input
@@ -11,7 +11,7 @@ const CheckBox = ({
       type="checkbox"
       checked={checked}
       id={labelFor}
-      onChange={handleChange}
+      onChange={onChange}
     />
     <label
       className="form-check-label"
@@ -26,7 +26,7 @@ CheckBox.propTypes = {
   className: PropTypes.string,
   labelFor: PropTypes.string,
   checked: PropTypes.bool,
-  handleChange: PropTypes.func,
+  onChange: PropTypes.func,
   label: PropTypes.string,
 }
 
@@ -34,7 +34,7 @@ CheckBox.defaultProps = {
   className: 'form-group',
   labelFor: 'checkbox',
   checked: false,
-  handleChange() {},
+  onChange() {},
   label: 'CheckBox',
 }
 
