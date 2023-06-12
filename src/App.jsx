@@ -1,11 +1,10 @@
 import React from "react";
-import Jumbotron from "./components/Jumbotron";
-import TitleHeader from "./components/TitleHeader";
 import Container from "./components/Container";
-import Row from "./components/Row";
-import Column from "./components/Column";
 import Form from "./components/Form";
+import Jumbotron from "./components/Jumbotron";
+import MultiView from "./components/MultiView";
 import Post from "./components/Post";
+import TitleHeader from "./components/TitleHeader";
 
 const App = () => (
   <div>
@@ -13,18 +12,19 @@ const App = () => (
       <TitleHeader className="text-center" title="React Form" />
     </Jumbotron>
     <div className="row">
-      <div className="col-6">
+      <div className="col-sm-12 col-md-4">
         <Container>
-          <Row>
-            <Column className="col-md-6 offset-md-3">
-              <Form />
-            </Column>
-          </Row>
+          <Form />
         </Container>
       </div>
-      <div className="col-6">
+      <div className="col-sm-12 col-md-4">
         <Container>
           <Post />
+        </Container>
+      </div>
+      <div className="col-sm-12 col-md-4">
+        <Container>
+          <MultiView />
         </Container>
       </div>
     </div>
