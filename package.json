@@ -21,7 +21,8 @@
     "cypress:open": "cypress open",
     "test:vitest": "vitest",
     "coverage": "vitest run --coverage",
-    "test:ui": "vitest --ui"
+    "test:ui": "vitest --ui",
+    "test:update": "vitest -u"
   },
   "eslintConfig": {
     "extends": "react-app"

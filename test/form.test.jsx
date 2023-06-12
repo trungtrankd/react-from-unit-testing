@@ -15,6 +15,16 @@ describe("<Form>", () => {
     });
   });
 
+  test("<Snapshot>", () => {
+    expect(
+      render(
+        <TestWrapper>
+          <Form />
+        </TestWrapper>
+      )
+    ).toMatchSnapshot("./snapshot/form.output.html");
+  });
+
   test("<Submit Button>", () => {
     const buttonSubmit = screen.getByTestId("btn-submit");
     expect(buttonSubmit).toBeDefined();
