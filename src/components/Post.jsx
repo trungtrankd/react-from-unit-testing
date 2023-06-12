@@ -23,18 +23,18 @@ export default function Post() {
   }, [fetchData]);
 
   return (
-    <div className="container">
-      <div className="row">
-        <div className="col">
-          {loading ? (
-            <div data-testid="loading" aria-label="loading">Loading...</div>
-          ) : (
-            <div data-testid="post-content">
-              <h2 data-testid="post-title">{post.title}</h2>
-              <p data-testid="post-body">{post.body}</p>
-            </div>
-          )}
-        </div>
+    <div className="row">
+      <div className="col">
+        {loading ? (
+          <div data-testid="loading" aria-label="loading">
+            Loading...
+          </div>
+        ) : (
+          <div data-testid="post-content">
+            <h2 data-testid="post-title">{post.title}</h2>
+            <p data-testid="post-body">{post.body}</p>
+          </div>
+        )}
       </div>
     </div>
   );
