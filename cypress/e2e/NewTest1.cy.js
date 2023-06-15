@@ -16,6 +16,7 @@ describe('template spec', () => {
 			cy.get('#subscribed').click();
 			// click button submit
 			cy.get('button').click();
+			cy.wait(300);
 		});
 	});
 
