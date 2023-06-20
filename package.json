@@ -20,11 +20,16 @@
     "test": "vitest",
     "eject": "react-scripts eject",
     "lint": "./node_modules/.bin/eslint src/** --ext .js,.jsx",
-    "cypress:open": "cypress open",
+    "cypress:open": "cypress open allure=true",
     "test:vitest": "vitest",
     "coverage": "vitest run --coverage",
     "test:ui": "vitest --ui",
-    "test:update": "vitest -u"
+    "test:update": "vitest -u",
+    "cy:run": "cypress run --env allure=true --headed",
+    "allure:report": "allure generate allure-results --clean  -o allure-report",
+    "cy:test": "npm run cy:run || npm run posttest && npm run launchReport",
+    "posttest": "npm run allure:report",
+    "launchReport": "allure serve"
   },
   "eslintConfig": {
     "extends": "react-app"
